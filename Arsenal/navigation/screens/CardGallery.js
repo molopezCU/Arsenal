@@ -1,45 +1,68 @@
-import { StatusBar } from 'expo-status-bar';
-import { Provider as PaperProvider, Button, List, IconButton, Avatar, FAB, Appbar, DefaultTheme } from "react-native-paper";
+import * as React from 'react';
+import { StyleSheet, SafeAreaView, StatusBar, View, ScrollView, Dimensions, Pressable, Text, Image, TextInput } from 'react-native';
+import { Provider as PaperProvider, RadioButton, Button, Paragraph, Dialog, Portal, List, Avatar, IconButton, Checkbox, Provider, DefaultTheme} from 'react-native-paper';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
-import React from 'react';
-import {
-    View,
-    Image,
-    StyleSheet,
-    SafeAreaView,
-    ScrollView,
-} from 'react-native';
 
-export default class CardGallery extends React.Component {
-    render() {
-        return (
-                <View style={styles.cardGallery}>
-                  <Image
-                      source={this.props.itemImage}
-                      style={styles.image} />
-                </View>
-        );
-    }
+xport default function CardGallery({ navigation }) {
+
+  const navigator = useNavigation();
+
+  return (
+      <View
+    style={{
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center"
+    }}>
+    <Text>Hello, world!</Text>
+  </View>
+  );
 }
 
-const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    paddingTop: StatusBar.currentHeight,
-  },
-  cardGallery: {
-      width: '50%',
-      height: '50%',
-      padding: 5,
-  },
-  image: {
-      width: '100%',
-      height: '100%',
-      opacity: 1,
-      resizeMode: 'contain'
-  }
-});
+//CardGallery old setup [ need to make evrything here and call to app.js]
+// import React from 'react';
+// import {
+//     View,
+//     Image,
+//     StyleSheet,
+//     SafeAreaView,
+//     ScrollView,
+// } from 'react-native';
 
+// export default class CardGallery extends React.Component {
+//     render() {
+//         return (
+//                 <View style={styles.cardGallery}>
+//                   <Image
+//                       source={this.props.itemImage}
+//                       style={styles.image} />
+//                 </View>
+//         );
+//     }
+// }
+
+// const styles = StyleSheet.create({
+//   container:{
+//     flex: 1,
+//     paddingTop: StatusBar.currentHeight,
+//   },
+//   cardGallery: {
+//       width: '50%',
+//       height: '50%',
+//       padding: 5,
+//   },
+//   image: {
+//       width: '100%',
+//       height: '100%',
+//       opacity: 1,
+//       resizeMode: 'contain'
+//   }
+// });
+
+
+//paste into app.js comment everything out [need to combine]
 /*
  import React, { useState } from 'react';
 import { render } from 'react-dom';
