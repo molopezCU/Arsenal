@@ -8,7 +8,7 @@ import {
     TextInput,
 } from 'react-native';
 
-export default function SearchDropDown(props) {
+export default function SearchBar(props) {
     const { dataSource } = props
     return (
         <TouchableOpacity

@@ -1,34 +1,43 @@
+import { StatusBar } from 'expo-status-bar';
+import { Provider as PaperProvider, Button, List, IconButton, Avatar, FAB, Appbar, DefaultTheme } from "react-native-paper";
+
 import React from 'react';
 import {
     View,
     Image,
     StyleSheet,
+    SafeAreaView,
+    ScrollView,
 } from 'react-native';
 
-export default class MenuItem extends React.Component {
+export default class CardGallery extends React.Component {
     render() {
         return (
-            <View style={styles.menuItem}>
-                <Image
-                    source={this.props.itemImage}
-                    style={styles.image} />
-            </View>
+                <View style={styles.cardGallery}>
+                  <Image
+                      source={this.props.itemImage}
+                      style={styles.image} />
+                </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    menuItem: {
-        width: '50%',
-        height: '50%',
-        padding: 5,
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-        opacity: 1,
-        resizeMode: 'contain'
-    }
+  container:{
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
+  cardGallery: {
+      width: '50%',
+      height: '50%',
+      padding: 5,
+  },
+  image: {
+      width: '100%',
+      height: '100%',
+      opacity: 1,
+      resizeMode: 'contain'
+  }
 });
 
 /*

@@ -1,103 +1,162 @@
- import React, { useState } from 'react';
+// import * as React from 'react'
+// import { Provider as PaperProvider, Button, Appbar, BottomNavigation, DefaultTheme, Provider, Drawer, Text, Menu, Divider, IconButton } from "react-native-paper";
+// import { StatusBar, StyleSheet, View, Pressable } from 'react-native';
+
+// import LogIn from './navigation/screens/LogIn';
+// import SearchBar from './navigation/screens/SearchBar';
+// import CardGallery from './navigation/screens/CardGallery';
+// import DeckBuilder from './AllScreen';
+// import Profile from './navigation/screens/Profile.js';
+// import Settings from './navigation/screens/Settings.js';
+// import { createStackNavigator } from '@react-navigation/stack';
+// import { NavigationContainer } from '@react-navigation/native';
+
+// import { clearAllStoredData } from './StorageHandler';
+
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+// import { Ionicons } from '@expo/vector-icons';
+
+// const Stack = createStackNavigator();
+// const Tab = createBottomTabNavigator();
+// const MaterialTopTab = createMaterialTopTabNavigator();
+
+// function TestPages() {
+// 	return (
+
+//     <Stack.Navigator initialRouteName="CardGallery">
+//           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+//               screenOptions={({ navigation }) => ({
+//                 headerStyle: {
+//                   backgroundColor: '#12414F',
+//                 },
+//                 headerTintColor: '#fff',
+//                 headerRight: () => (
+//                   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+//                 ),
+//                 headerLeft: () => (
+//                   <View style={styles.EndTestButtonContainer}>
+//                     <Pressable
+//                         onPress={() => navigation.navigate("StartTest") }
+//                         style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
+//                     >
+//                       <Text style={styles.EndTestButtonText}>Back</Text>
+            
+//                     </Pressable>
+//                   </View>
+//                 ),
+//                 gestureEnabled: false
+//               })}
+//           >
+//             <Tab.Screen name="SearchBar" options={{ title: 'Home' }} component={SearchBar} />
+//           </Stack.Group>
+
+//           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+//               screenOptions={({ navigation }) => ({
+//                 headerStyle: {
+//                   backgroundColor: '#12414F',
+//                 },
+//                 headerTintColor: '#fff',
+//                 headerRight: () => (
+//                   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+//                 ),
+//               })}
+//           >
+
+//             <Stack.Screen name="searchbar" options={{ title: 'SearchBar' }} component={PreDriveScreen} />
+//             <Stack.Screen name="cardgallery" options={{ title: 'Freeway Lane Change Left' }} component={FreewayLaneChangeScreen} />
+//             <Stack.Screen name="profile" options={{ title: 'Freeway Lane Change Right' }} component={FreewayLaneChangeRightScreen} />
+//             <Stack.Screen name="searchbar" options={{ title: 'Results' }} component={TestResult} />
+//             <Stack.Screen name="settings" options={{ title: 'Parking Lot' }} component={ParkingLot} />
+//             <Stack.Screen name="Freeway" options={{ title: 'Freeway' }} component={FreewayTabs} />
+            
+//           </Stack.Group>
+//           </Stack.Navigator>
+// 	);
+// }
+
+//CARD GALLERY
+import React, { useState } from 'react';
+import { render } from 'react-dom';
  import {
    SafeAreaView,
    StyleSheet,
    ScrollView,
+   StatusBar,
    View,
    Text,
    TextInput,
+   ImageBackground,
  } from 'react-native';
- import SearchDropDown from './component/SearchDropDown';
- export default function App() {
-   const [dataSource] = useState(['katsu', 'dorinthea', 'rhinar', 'bravo', 'azalea', 'kano', 'viserai', 'dash'])
-  //  const [colors] = useState(['#84DCC6', '#FEC8C8', '#F7E4CF', "#E8DEF3",
-  //  ])
-   const [filtered, setFiltered] = useState(dataSource)
-   const [searching, setSearching] = useState(false)
-   const onSearch = (text) => {
-     if (text) {
-       setSearching(true)
-       const temp = text.toLowerCase()
- 
-       const tempList = dataSource.filter(item => {
-         if (item.match(temp))
-           return item
-       })
-       setFiltered(tempList)
-     }
-     else {
-       setSearching(false)
-       setFiltered(dataSource)
-     }
- 
+import CardGallery from './navigation/screens/CardGallery';
+// import { ImageBackground } from 'react-native-web';
+ //import SearchDropDown from './component/SearchDropDown';
+ export default class App extends React.Component {
+   render() {
+     return(
+       <ImageBackground
+            source={require('./assets/bg.jpg')}
+            style={styles.container}>
+
+            <View style={styles.overlayContainer}>
+
+              <View style={styles.top}>
+                <Text style={styles.header}>A R S E N A L</Text>
+              </View>
+
+              <ScrollView>
+
+                <View style={styles.cardContainer}>
+                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
+                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
+                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
+                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
+                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
+                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
+                </View>
+
+              </ScrollView>
+
+          </View>
+
+        </ImageBackground>
+        
+     );
    }
-  //  const randomColor = () => {
-  //    return colors[Math.floor(Math.random() * colors.length)]
-  //  }
-   return (
-     <View style={styles.container}>
- 
-       <TextInput
-         style={styles.textInput}
-         placeholder="Search"
-         placeholderTextColor='white'
-         onChangeText={onSearch}
- 
-       />
-       <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
-         <Text style={{ fontSize: 20, marginTop: 20, marginBottom: 20, }}> List of data</Text>
-         <View style={{
-           flexWrap: 'wrap', flexDirection: 'row',
-           justifyContent: 'center'
- 
-         }}>
-           {
-             dataSource.map((item, index) => {
-               return (
-                 <View style={{
-                   margin: 10,
-                   justifyContent: 'center',
-                   alignItems: 'center',
-                   height: 80, width: 80, backgroundColor: 'gray'
-                 }}>
-                   <Text style={{ fontSize: 15, }}>
-                     {item}
-                   </Text>
-                 </View>
-               )
-             })
-           }
-         </View>
- 
-       </View>
- 
-       {/* your components can stay here like anything */}
-       {/* and at the end of view */}
-       {
-         searching &&
-         <SearchDropDown
-           onPress={() => setSearching(false)}
-           dataSource={filtered} />
-       }
-     </View>
-   )
- }
- 
- 
+}
+
  const styles = StyleSheet.create({
    container: {
-     // justifyContent: 'center',
+     width: '100%',
+     height: '100%',
+     flex: 1,
+   },
+   overlayContainer: {
+     flex: 1,
+     backgroundColor: 'rgba(47,163,218, .4)',
+   },
+   top: {
+     height: '40%',
      alignItems: 'center',
-     marginTop: '20%',
-     flex: 1
+     justifyContent: 'center',
    },
-   textInput: {
-     backgroundColor: '#BFBFBF',
-     width: '80%',
-     borderRadius: 5,
-     height: 50,
-     fontSize: 20,
-     fontWeight: 'bold',
-     paddingHorizontal: 10,
+   header: {
+     color: '#fff',
+     fontSize: 28,
+     borderColor: '#fff',
+     borderWidth: 2,
+     padding: 20,
+     paddingLeft: 40,
+     paddingRight: 40,
+     backgroundColor: 'rgba(255,255,255, .1)',
    },
+      
+   scrollView: {
+    flex: 1,
+   },
+   cardContainer: {
+     height: '100%',
+     flexDirection: 'row',
+     flexWrap: 'wrap',
+   }
  });
