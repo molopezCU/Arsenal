@@ -1,162 +1,282 @@
-// import * as React from 'react'
-// import { Provider as PaperProvider, Button, Appbar, BottomNavigation, DefaultTheme, Provider, Drawer, Text, Menu, Divider, IconButton } from "react-native-paper";
-// import { StatusBar, StyleSheet, View, Pressable } from 'react-native';
+import * as React from 'react'
 
-// import LogIn from './navigation/screens/LogIn';
-// import SearchBar from './navigation/screens/SearchBar';
-// import CardGallery from './navigation/screens/CardGallery';
-// import DeckBuilder from './AllScreen';
-// import Profile from './navigation/screens/Profile.js';
-// import Settings from './navigation/screens/Settings.js';
-// import { createStackNavigator } from '@react-navigation/stack';
-// import { NavigationContainer } from '@react-navigation/native';
+import { Provider as PaperProvider, Button, Appbar, BottomNavigation, DefaultTheme, Provider, Drawer, Text, Menu, Divider, IconButton } from "react-native-paper";
 
-// import { clearAllStoredData } from './StorageHandler';
+import { StatusBar, StyleSheet, View, Pressable } from 'react-native';
 
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-// import { Ionicons } from '@expo/vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-// const Stack = createStackNavigator();
-// const Tab = createBottomTabNavigator();
-// const MaterialTopTab = createMaterialTopTabNavigator();
 
-// function TestPages() {
-// 	return (
-
-//     <Stack.Navigator initialRouteName="CardGallery">
-//           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
-//               screenOptions={({ navigation }) => ({
-//                 headerStyle: {
-//                   backgroundColor: '#12414F',
-//                 },
-//                 headerTintColor: '#fff',
-//                 headerRight: () => (
-//                   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
-//                 ),
-//                 headerLeft: () => (
-//                   <View style={styles.EndTestButtonContainer}>
-//                     <Pressable
-//                         onPress={() => navigation.navigate("StartTest") }
-//                         style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
-//                     >
-//                       <Text style={styles.EndTestButtonText}>Back</Text>
-            
-//                     </Pressable>
-//                   </View>
-//                 ),
-//                 gestureEnabled: false
-//               })}
-//           >
-//             <Tab.Screen name="SearchBar" options={{ title: 'Home' }} component={SearchBar} />
-//           </Stack.Group>
-
-//           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
-//               screenOptions={({ navigation }) => ({
-//                 headerStyle: {
-//                   backgroundColor: '#12414F',
-//                 },
-//                 headerTintColor: '#fff',
-//                 headerRight: () => (
-//                   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
-//                 ),
-//               })}
-//           >
-
-//             <Stack.Screen name="searchbar" options={{ title: 'SearchBar' }} component={PreDriveScreen} />
-//             <Stack.Screen name="cardgallery" options={{ title: 'Freeway Lane Change Left' }} component={FreewayLaneChangeScreen} />
-//             <Stack.Screen name="profile" options={{ title: 'Freeway Lane Change Right' }} component={FreewayLaneChangeRightScreen} />
-//             <Stack.Screen name="searchbar" options={{ title: 'Results' }} component={TestResult} />
-//             <Stack.Screen name="settings" options={{ title: 'Parking Lot' }} component={ParkingLot} />
-//             <Stack.Screen name="Freeway" options={{ title: 'Freeway' }} component={FreewayTabs} />
-            
-//           </Stack.Group>
-//           </Stack.Navigator>
-// 	);
-// }
-
-//CARD GALLERY
-import React, { useState } from 'react';
-import { render } from 'react-dom';
- import {
-   SafeAreaView,
-   StyleSheet,
-   ScrollView,
-   StatusBar,
-   View,
-   Text,
-   TextInput,
-   ImageBackground,
- } from 'react-native';
+import LogIn from './navigation/screens/LogIn';
+import TestConfig from './navigation/screens/TestConfig';
+import MainHome from './AllScreen'
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import UserProfile from './navigation/screens/UserProfile';
 import CardGallery from './navigation/screens/CardGallery';
-// import { ImageBackground } from 'react-native-web';
- //import SearchDropDown from './component/SearchDropDown';
- export default class App extends React.Component {
-   render() {
-     return(
-       <ImageBackground
-            source={require('./assets/bg.jpg')}
-            style={styles.container}>
+import { clearAllStoredData } from './StorageHandler';
+import Settings from './navigation/screens/Settings';
+//import SignUp from './navigation/screens/SignUp';
 
-            <View style={styles.overlayContainer}>
+import HomeScreen from './navigation/screens/HomeScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
-              <View style={styles.top}>
-                <Text style={styles.header}>A R S E N A L</Text>
-              </View>
 
-              <ScrollView>
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+const MaterialTopTab = createMaterialTopTabNavigator();
 
-                <View style={styles.cardContainer}>
-                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
-                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
-                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
-                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
-                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
-                <CardGallery itemImage={require('./assets/ARC000-CF.jpg')}/>
-                </View>
+global.test = true;
 
-              </ScrollView>
+global.selectedSound = 0;
+global.currentErrorCount = 0;
 
-          </View>
+//bottom left
+function AppPages() {
+	return (
 
-        </ImageBackground>
-        
-     );
-   }
+    <Stack.Navigator initialRouteName="HomeScreen">
+          <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+              screenOptions={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: '#12414F',
+                },
+                headerTintColor: '#fff',
+                headerRight: () => (
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+                ),
+                headerLeft: () => (
+                  <View style={styles.EndTestButtonContainer}>
+                    <Pressable
+                        onPress={() => navigation.navigate("LogIn") }
+                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
+                    >
+                      <Text style={styles.EndTestButtonText}>Back</Text>
+            
+                    </Pressable>
+                  </View>
+                ),
+                gestureEnabled: false
+              })}
+          >
+            <Tab.Screen name="HomeScreen" options={{ title: 'Home' }} component={HomeScreen} />
+          </Stack.Group>
+
+          <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+              screenOptions={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: '#12414F',
+                },
+                headerTintColor: '#fff',
+                headerRight: () => (
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+                ),
+              })}
+          >
+            <Stack.Screen name="userprofile" options={{ title: 'User Profile' }} component={UserProfile} />
+            <Stack.Screen name="cardgallery" options={{ title: 'Card Gallery' }} component={CardGallery} />
+            
+          </Stack.Group>
+          </Stack.Navigator>
+	);
+}
+//bottom middle
+function CardGalleryStack() {
+	return (
+    <Stack.Navigator>
+          <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+              screenOptions={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: '#12414F',
+                },
+                headerTintColor: '#fff',
+                headerRight: () => (
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+                ),
+                headerLeft: () => (
+                  <View style={styles.EndTestButtonContainer}>
+                    <Pressable
+                        onPress={() => navigation.navigate("LogIn") }
+                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
+                    >
+                      <Text style={styles.EndTestButtonText}>Back</Text>
+            
+                    </Pressable>
+                  </View>
+                ),
+                gestureEnabled: false
+              })}
+          >
+        <Stack.Screen name='CardGallery' options = {{ title: 'Card Gallery' }} component={CardGallery}/>
+      </Stack.Group>
+    </Stack.Navigator>
+  );
 }
 
- const styles = StyleSheet.create({
-   container: {
-     width: '100%',
-     height: '100%',
-     flex: 1,
-   },
-   overlayContainer: {
-     flex: 1,
-     backgroundColor: 'rgba(47,163,218, .4)',
-   },
-   top: {
-     height: '40%',
-     alignItems: 'center',
-     justifyContent: 'center',
-   },
-   header: {
-     color: '#fff',
-     fontSize: 28,
-     borderColor: '#fff',
-     borderWidth: 2,
-     padding: 20,
-     paddingLeft: 40,
-     paddingRight: 40,
-     backgroundColor: 'rgba(255,255,255, .1)',
-   },
-      
-   scrollView: {
-    flex: 1,
-   },
-   cardContainer: {
-     height: '100%',
-     flexDirection: 'row',
-     flexWrap: 'wrap',
-   }
- });
+//bottom right
+function UserProfileStack() {
+	return (
+    <Stack.Navigator>
+          <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+              screenOptions={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: '#12414F',
+                },
+                headerTintColor: '#fff',
+                headerRight: () => (
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+                ),
+                headerLeft: () => (
+                  <View style={styles.EndTestButtonContainer}>
+                    <Pressable
+                        onPress={() => navigation.navigate("LogIn") }
+                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
+                    >
+                      <Text style={styles.EndTestButtonText}>Back</Text>
+            
+                    </Pressable>
+                  </View>
+                ),
+                gestureEnabled: false
+              })}
+          >
+        <Stack.Screen name='userprofile' options = {{ title: 'User Profile' }} component={UserProfile}/>
+      </Stack.Group>
+    </Stack.Navigator>
+  );
+}
+
+//theme where the bakcgruond should be?
+function MyTabs() {
+	return (
+    <PaperProvider theme={theme}>
+		<Tab.Navigator 
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: '#ffffff',
+        tabBarInactiveTintColor: '#adadad',
+        tabBarStyle:{
+          backgroundColor:'#12414F',
+        },
+        gestureEnabled: false
+      }} 
+    >
+			<Tab.Screen 
+        name="Search" 
+        component={AppPages} //function is right above this mytabs function 
+        options={{ 
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+
+      <Tab.Screen 
+        name="Card Gallery" 
+        component={CardGalleryStack} 
+        options={{ 
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="wallpaper" color={color} size={size} />
+          ),
+        }}
+      />
+
+			<Tab.Screen 
+        name="Profile" 
+        component={UserProfileStack} 
+        options={{ 
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />
+          ),
+          unmountOnBlur: true,
+        }}
+        listeners={({ navigation }) => ({
+          blur: () => navigation.setParams({ screen: undefined }),
+        })} 
+      />
+		</Tab.Navigator>
+   </PaperProvider>
+	);
+}
+
+
+function App() {
+  return (
+		<NavigationContainer>
+      {/* Sets the iOS status bar to white, instead of the default black */}
+      <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
+
+			<Stack.Navigator initialRouteName="LogIn" >
+
+        <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+              screenOptions={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: '#12414F',
+                },
+                headerTintColor: '#fff',
+                headerLeft: null,
+                gestureEnabled: false
+              })}
+          >
+            <Stack.Screen name="LogIn" options={{ title: 'Login' }} component={LogIn} />
+        </Stack.Group>
+
+        <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+              screenOptions={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: '#12414F',
+                },
+                headerTintColor: '#fff',
+
+              })}
+              
+          >
+          <Stack.Screen name='settings' options={{ title: 'Settings' }} component={Settings}/>
+          <Stack.Screen name="TestConfig" options={{ title: 'Driving Evaluation Configuration' }} component={TestConfig} />
+          {/* <Stack.Screen name="SignUp" options={{ title: 'Instructor Info' }} component={SignUp} /> */}
+        </Stack.Group>
+          <Stack.Group screenOptions={{headerShown: false}}>
+				    <Stack.Screen name="MainAppPages" options={{ title: 'Home' }}  component={MyTabs} />
+          </Stack.Group>
+			</Stack.Navigator>
+		</NavigationContainer>
+  );
+}
+
+const styles = StyleSheet.create({
+  EndTestButtonContainer: {
+    marginLeft: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  EndTestButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: "100%",
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    elevation: 3,
+  },
+  EndTestButtonText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+});
+
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#12414F',
+    accent: '#90C96A',
+     
+  },
+};
+
+export default App;
