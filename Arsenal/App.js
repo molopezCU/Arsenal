@@ -146,7 +146,7 @@ function UserProfileStack() {
   );
 }
 
-//theme where the bakcgruond should be?
+//bottom bars
 function MyTabs() {
 	return (
     <PaperProvider theme={theme}>
@@ -156,7 +156,7 @@ function MyTabs() {
         tabBarActiveTintColor: '#ffffff',
         tabBarInactiveTintColor: '#adadad',
         tabBarStyle:{
-          backgroundColor:'#12414F',
+          backgroundColor:'#14414F',
         },
         gestureEnabled: false
       }} 

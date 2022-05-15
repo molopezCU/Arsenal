@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Fragment } from 'react'
-//import MainContainer from './navigation/MainContainer';
 import BottomNav from './navigation/BottomNav';
 import { Provider as PaperProvider, Button, Appbar, BottomNavigation, DefaultTheme, Provider, Drawer, Text, Menu, Divider, IconButton, FAB, Portal } from "react-native-paper";
 import { Ionicons } from '@expo/vector-icons';
