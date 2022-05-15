@@ -93,5 +93,5 @@ const theme = {
 
 
 
-// const win = Dimensions.get("window");
-// const ratio = win.width / 500;
+ const win = Dimensions.get("window");
+ const ratio = win.width / 500;

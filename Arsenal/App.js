@@ -28,9 +28,6 @@ const MaterialTopTab = createMaterialTopTabNavigator();
 
 global.test = true;
 
-global.selectedSound = 0;
-global.currentErrorCount = 0;
-
 //bottom left
 function AppPages() {
 	return (
@@ -46,12 +43,12 @@ function AppPages() {
                   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
                 ),
                 headerLeft: () => (
-                  <View style={styles.EndTestButtonContainer}>
+                  <View style={styles.ReturntoLoginContainer}>
                     <Pressable
                         onPress={() => navigation.navigate("StartArsenal") }
-                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
+                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.ReturntoLogin]}
                     >
-                      <Text style={styles.EndTestButtonText}>Back</Text>
+                      <Text style={styles.ReturntoLoginText}>Back</Text>
             
                     </Pressable>
                   </View>
@@ -94,12 +91,12 @@ function CardGalleryStack() {
                   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
                 ),
                 headerLeft: () => (
-                  <View style={styles.EndTestButtonContainer}>
+                  <View style={styles.ReturntoLoginContainer}>
                     <Pressable
                         onPress={() => navigation.navigate("StartArsenal") }
-                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
+                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.ReturntoLogin]}
                     >
-                      <Text style={styles.EndTestButtonText}>Back</Text>
+                      <Text style={styles.ReturntoLoginText}>Back</Text>
             
                     </Pressable>
                   </View>
@@ -127,12 +124,12 @@ function UserProfileStack() {
                   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
                 ),
                 headerLeft: () => (
-                  <View style={styles.EndTestButtonContainer}>
+                  <View style={styles.ReturntoLoginContainer}>
                     <Pressable
                         onPress={() => navigation.navigate("StartArsenal") }
-                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
+                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.ReturntoLogin]}
                     >
-                      <Text style={styles.EndTestButtonText}>Back</Text>
+                      <Text style={styles.ReturntoLoginText}>Back</Text>
             
                     </Pressable>
                   </View>
@@ -243,12 +240,12 @@ function App() {
 }
 
 const styles = StyleSheet.create({
-  EndTestButtonContainer: {
+  ReturntoLoginContainer: {
     marginLeft: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  EndTestButton: {
+  ReturntoLogin: {
     alignItems: 'center',
     justifyContent: 'center',
     width: "100%",
@@ -257,7 +254,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 3,
   },
-  EndTestButtonText: {
+  ReturntoLoginText: {
     fontSize: 15,
     fontWeight: 'bold',
     color: 'black',
