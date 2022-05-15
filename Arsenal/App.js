@@ -6,9 +6,8 @@ import { StatusBar, StyleSheet, View, Pressable } from 'react-native';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
-import LogIn from './navigation/screens/LogIn';
-import TestConfig from './navigation/screens/TestConfig';
+import StartArsenal from './navigation/screens/StartArsenal';
+import ArsenalConfig from './navigation/screens/ArsenalConfig';
 import MainHome from './AllScreen'
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -16,7 +15,6 @@ import UserProfile from './navigation/screens/UserProfile';
 import CardGallery from './navigation/screens/CardGallery';
 import { clearAllStoredData } from './StorageHandler';
 import Settings from './navigation/screens/Settings';
-//import SignUp from './navigation/screens/SignUp';
 
 import HomeScreen from './navigation/screens/HomeScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -50,7 +48,7 @@ function AppPages() {
                 headerLeft: () => (
                   <View style={styles.EndTestButtonContainer}>
                     <Pressable
-                        onPress={() => navigation.navigate("LogIn") }
+                        onPress={() => navigation.navigate("StartArsenal") }
                         style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
                     >
                       <Text style={styles.EndTestButtonText}>Back</Text>
@@ -61,7 +59,7 @@ function AppPages() {
                 gestureEnabled: false
               })}
           >
-            <Tab.Screen name="HomeScreen" options={{ title: 'Home' }} component={HomeScreen} />
+            <Tab.Screen name="HomeScreen" options={{ title: 'Search' }} component={HomeScreen} />
           </Stack.Group>
 
           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
@@ -98,7 +96,7 @@ function CardGalleryStack() {
                 headerLeft: () => (
                   <View style={styles.EndTestButtonContainer}>
                     <Pressable
-                        onPress={() => navigation.navigate("LogIn") }
+                        onPress={() => navigation.navigate("StartArsenal") }
                         style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
                     >
                       <Text style={styles.EndTestButtonText}>Back</Text>
@@ -131,7 +129,7 @@ function UserProfileStack() {
                 headerLeft: () => (
                   <View style={styles.EndTestButtonContainer}>
                     <Pressable
-                        onPress={() => navigation.navigate("LogIn") }
+                        onPress={() => navigation.navigate("StartArsenal") }
                         style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.EndTestButton]}
                     >
                       <Text style={styles.EndTestButtonText}>Back</Text>
@@ -165,10 +163,10 @@ function MyTabs() {
     >
 			<Tab.Screen 
         name="Search" 
-        component={AppPages} //function is right above this mytabs function 
+        component={AppPages} 
         options={{ 
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="magnify" color={color} size={size} />
           ),
         }}
       />
@@ -208,7 +206,7 @@ function App() {
       {/* Sets the iOS status bar to white, instead of the default black */}
       <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
 
-			<Stack.Navigator initialRouteName="LogIn" >
+			<Stack.Navigator initialRouteName="StartArsenal" >
 
         <Stack.Group style={ { backgroundColor: '#6a51ae' }}
               screenOptions={({ navigation }) => ({
@@ -220,7 +218,7 @@ function App() {
                 gestureEnabled: false
               })}
           >
-            <Stack.Screen name="LogIn" options={{ title: 'Login' }} component={LogIn} />
+            <Stack.Screen name="StartArsenal" options={{ title: 'Welcome to Arsenal' }} component={StartArsenal} />
         </Stack.Group>
 
         <Stack.Group style={ { backgroundColor: '#6a51ae' }}
@@ -234,8 +232,7 @@ function App() {
               
           >
           <Stack.Screen name='settings' options={{ title: 'Settings' }} component={Settings}/>
-          <Stack.Screen name="TestConfig" options={{ title: 'Driving Evaluation Configuration' }} component={TestConfig} />
-          {/* <Stack.Screen name="SignUp" options={{ title: 'Instructor Info' }} component={SignUp} /> */}
+          <Stack.Screen name="ArsenalConfig" options={{ title: 'Account Setup' }} component={ArsenalConfig} />
         </Stack.Group>
           <Stack.Group screenOptions={{headerShown: false}}>
 				    <Stack.Screen name="MainAppPages" options={{ title: 'Home' }}  component={MyTabs} />

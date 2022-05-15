@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 export async function storeStringData(key, value) {
   try {
     await AsyncStorage.setItem("@" + key, value);
@@ -30,7 +31,6 @@ export async function getData(key) {
   }
 
 }
-
 
 export async function getObjectData(key) {
   try {
@@ -75,33 +75,4 @@ export async function clearAllStoredData() {
   }
 
   console.log('Cleared all saved data!');
-}
-
-
-export async function clearAllTestData() {
-  var InstructorNameFromStorage = await getData("INSTRUCTOR_NAME");
-  var InstructorEmailFromStorage = await getData("INSTRUCTOR_EMAIL");
-
-  try {
-    global.selectedSound = 0;
-    global.currentErrorCount = 0;
-
-    await AsyncStorage.clear()
-
-    storeStringData("IS_LOGGED_IN", "true");
-
-    if (InstructorNameFromStorage != null) {
-      storeStringData("INSTRUCTOR_NAME", InstructorNameFromStorage);
-    }
-    if (InstructorEmailFromStorage != null) {
-      storeStringData("INSTRUCTOR_EMAIL", InstructorEmailFromStorage);
-    }
-
-    console.log('Cleared all test data!');
-  } catch (e) {
-    console.log("Error clearing test data");
-    console.log(e);
-  }
-
-
 }

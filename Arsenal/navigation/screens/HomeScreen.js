@@ -23,6 +23,7 @@ const MyComponent = () => {
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
+      home: HomeScreen,
       card: CardGallery,
       userProfile: UserProfile,
 
@@ -48,7 +49,6 @@ export default function HomeScreen() {
 
     <PaperProvider theme={theme}>
       <ScrollView>
-        {/* might need viewstyle marginTop: 30 */}
         
 
       </ScrollView >
@@ -93,5 +93,5 @@ const theme = {
 
 
 
-const win = Dimensions.get("window");
-const ratio = win.width / 500;
+// const win = Dimensions.get("window");
+// const ratio = win.width / 500;

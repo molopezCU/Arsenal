@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Fragment } from 'react'
+//import MainContainer from './navigation/MainContainer';
 import BottomNav from './navigation/BottomNav';
 import { Provider as PaperProvider, Button, Appbar, BottomNavigation, DefaultTheme, Provider, Drawer, Text, Menu, Divider, IconButton, FAB, Portal } from "react-native-paper";
 import { Ionicons } from '@expo/vector-icons';
@@ -15,11 +16,17 @@ import UserProfile from './navigation/screens/UserProfile';
 
 const _goBack = () => console.log('Went back');
 
-const HomeRoute = () => <HomeScreen />
+const HomeRoute = () => <HomeScreen/>
 
 const cardGallery = <CardGallery/>
 
 const userProfile = <UserProfile/>
+
+const Lane_ChangeRoute = () => <LaneChangeScreenLeft />
+const MyComponent2 = () => {
+    const [active, setActive] = React.useState('');
+
+};
 
 const MyComponent = () => {
     const [active, setActive] = React.useState('');
