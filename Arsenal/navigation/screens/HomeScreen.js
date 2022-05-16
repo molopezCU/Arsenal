@@ -2,96 +2,171 @@ import * as React from "react";
 import {
   View,
   Text,
+  TextInput,
   StyleSheet,
   Dimensions,
   ScrollView,
+  Image,
 } from "react-native";
 import { Provider as PaperProvider, DefaultTheme, BottomNavigation } from "react-native-paper";
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from "react";
-import UserProfile from './UserProfile.js';
 import CardGallery from './CardGallery';
-
-const MyComponent = () => {
-  const [active, setActive] = React.useState('');
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-      { key: 'card', title: 'Card Gallery', icon: 'wallpaper'},
-      {key: 'userProfile', title: 'User Profile', icon: 'account'},
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-      home: HomeScreen,
-      card: CardGallery,
-      userProfile: UserProfile,
-
-  });
-
-  return (
-      <BottomNavigation barStyle = {{backgroundColor: 'ffffff', margin: 20}}
-          navigationState={{ index, routes }}
-          onIndexChange={setIndex}
-          renderScene={renderScene}
-      >
-
-      </BottomNavigation>
-
-  );
-};
+import SearchDropDown from "./SearchDropDown";
+import Images from './Images';
+import ShowImages from './ShowImages';
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
-  
 
-  return (
+  const localImage = require=("../../assets/bg.jpg");
+  let deviceWidth = Dimensions.get('window').width
+  let deviceHeight = Dimensions.get('window').height
 
-    <PaperProvider theme={theme}>
-      <ScrollView>
-        
+  const [dataSource, Images] = useState([
+    'Katsu',
+    'Dorinthea', 
+    'Rhinar', 
+    'Bravo',
+  ])
 
-      </ScrollView >
+   const [filtered, setFiltered] = useState(dataSource)
+   const [searching, setSearching] = useState(false)
+   const onSearch = (text) => {
+     if (text) {
+       setSearching(true)
+       const temp = text
 
-    </PaperProvider>
-  );
+       const tempList = dataSource.filter(item => {
+         if (item.match(temp))
+           return item
+       })
+       setFiltered(tempList)
+     }
+     else {
+       setSearching(false)
+       setFiltered(dataSource)
+     }
+
+   }
+
+   return (
+    <View style={styles.container}>
+      <View>
+      <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/upr_key_art_7Zz.width-10000.jpg' }} />
+      <TextInput
+        style={styles.textInput}
+        placeholder="Search"
+        placeholderTextColor='white'
+        onChangeText={onSearch}
+
+      />
+      <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 20, marginTop: 20, marginBottom: 20, }}> List of data</Text>
+        <View style={{
+          flexWrap: 'wrap', flexDirection: 'row',
+          justifyContent: 'center'
+
+        }}>
+          {
+            dataSource.map((item, index) => {
+              return (
+                <View style={{
+                  margin: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: 250, width: 175, backgroundColor: 'gray'
+                }}>
+                  <Text style={{ fontSize: 15, }}>
+                    {item}
+                  </Text>
+                </View>
+              )
+            })
+          }
+        </View>
+
+      </View>
+
+      {/* your components can stay here like anything */}
+      {/* and at the end of view */}
+      {
+        searching &&
+        <SearchDropDown
+          onPress={() => setSearching(false)}
+          dataSource={filtered} />
+      }
+      </View>
+    </View>
+  )
 }
+
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-
+    alignItems: 'center',
+    flex: 1
   },
-  icon: {
-    color: "rgba(205,50,50,1)",
-    fontSize: 98,
-  },
+  textInput: {
+    backgroundColor: '#BFBFBF',
+    width: '100%',
+    borderRadius: 5,
+    height: 50,
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingHorizontal: 185,
+  },  
+}); 
 
-  buttonView: {
-    display: "flex",
-    alignContent: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    paddingTop: "2%",
-    paddingBottom: "2%",
-  },
-});
+// useEffect(() => {
+//   let items = Array.apply(null, Array(60)).map((v, i) => {
+//     return {
+//       id: i,
+//       url: require('../../assets/WTR_1.width-450.png'+ (i + 1)),
+//     };
+//   });
 
-const theme = {
-  ...DefaultTheme,
-  roundness: 2,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#12414F',
-    accent: '#12414F',
+//   setDataSource(items);
 
-  },
-};
+// }, []);
 
+// return (
+//   <SafeAreaView style={styles.container}>
+//     <View>
+//       <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/upr_key_art_7Zz.width-10000.jpg' }} />
+//         <FlatList
+//           data={dataSource}
+//           renderItem={({item}) => (
+//             <View
+//               style={{
+//                 flex: 1,
+//                 flexDirection: 'column',
+//                 margin: 1
+//               }}>
+//               <Image
+//                 style={styles.imageThumbnail}
+//                 source={image.url}
+//               />
+//             </View>
+//           )}
+//       numColumns={3}
+//       keyExtractor={(item, index) => index} />
+//     </View>
+//   </SafeAreaView>
+// );
+// };
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     backgroundColor: 'white',
+//   },
+//   imageThumbnail: {
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     resizeMode: 'contain',
+//   },
+// });
 
- const win = Dimensions.get("window");
- const ratio = win.width / 500;

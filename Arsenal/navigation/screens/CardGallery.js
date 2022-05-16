@@ -9,7 +9,6 @@ import ShowImages from './ShowImages';
 
 const CardGallery = (props) => {
 
-    const navigator = useNavigation();
     const localImage = require=("../../assets/bg.jpg");
     let deviceWidth = Dimensions.get('window').width
     let deviceHeight = Dimensions.get('window').height

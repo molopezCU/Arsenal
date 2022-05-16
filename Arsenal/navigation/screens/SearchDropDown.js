@@ -8,7 +8,7 @@ import {
     TextInput,
 } from 'react-native';
 
-export default function SearchBar(props) {
+export default function SearchDropDown(props) {
     const { dataSource } = props
     return (
         <TouchableOpacity
@@ -44,15 +44,14 @@ export default function SearchBar(props) {
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        top: '6.2%',
+        top: '15%',
         left: 0, right: 0, bottom: 0,
 
     },
     subContainer: {
-
-        backgroundColor: '#84DCC6',
+        backgroundColor: '#2e2628',
         paddingTop: 10,
-        marginHorizontal: 20,
+        marginHorizontal: 85,
         borderTopLeftRadius: 4,
         borderTopRightRadius: 4,
         flexWrap: 'wrap',
@@ -75,7 +74,6 @@ const styles = StyleSheet.create({
     },
     noResultView: {
         alignSelf: 'center',
-        // margin: 20,
         height: 100,
         width: '100%',
         justifyContent: 'center',
@@ -88,4 +86,4 @@ const styles = StyleSheet.create({
         color: 'white'
     },
 
-});
+}); 
