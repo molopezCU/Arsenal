@@ -55,7 +55,7 @@ export default function AccountsPage(props) {
     },
   };
 
-  function startTest() {
+  function startApp() {
     if (UsernameText != null && UsernameText != "" && PasswordText != null && PasswordText != "") {
       if (PasswordText.length != 8) {
         alert("Password must be 8 characters!")
@@ -122,7 +122,7 @@ export default function AccountsPage(props) {
         </View>
 
         <Pressable
-          onPress={() => startTest()}
+          onPress={() => startApp()}
           style={({ pressed }) => [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' }, styles.Button]}
           display={isOnArsenalConfig ? "flex" : "none"}
         >

@@ -20,6 +20,8 @@ import ShowImages from './ShowImages';
 
 export default function HomeScreen() {
 
+  const navigation = useNavigation();
+
   const localImage = require=("../../assets/bg.jpg");
   let deviceWidth = Dimensions.get('window').width
   let deviceHeight = Dimensions.get('window').height
@@ -55,7 +57,8 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <View>
       <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/upr_key_art_7Zz.width-10000.jpg' }} />
-      <TextInput
+      <ScrollView>
+        <TextInput
         style={styles.textInput}
         placeholder="Search"
         placeholderTextColor='white'
@@ -63,7 +66,7 @@ export default function HomeScreen() {
 
       />
       <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: 20, marginTop: 20, marginBottom: 20, }}> List of data</Text>
+        <Text style={{ fontSize: 20, marginTop: 25, marginBottom: 20, color: 'white', fontWeight: "bold"}}> Cards</Text>
         <View style={{
           flexWrap: 'wrap', flexDirection: 'row',
           justifyContent: 'center'
@@ -78,7 +81,7 @@ export default function HomeScreen() {
                   alignItems: 'center',
                   height: 250, width: 175, backgroundColor: 'gray'
                 }}>
-                  <Text style={{ fontSize: 15, }}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>
                     {item}
                   </Text>
                 </View>
@@ -86,11 +89,9 @@ export default function HomeScreen() {
             })
           }
         </View>
-
+        
       </View>
-
-      {/* your components can stay here like anything */}
-      {/* and at the end of view */}
+      </ScrollView>
       {
         searching &&
         <SearchDropDown
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     height: 50,
     fontSize: 20,
     fontWeight: 'bold',
-    paddingHorizontal: 185,
+    paddingHorizontal: 10,
   },  
 }); 
 

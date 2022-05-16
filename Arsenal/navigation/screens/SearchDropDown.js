@@ -25,9 +25,7 @@ export default function SearchDropDown(props) {
                                     <Text style={styles.itemText}>{item}</Text>
                                 </View>
                             )
-                        })
-
-                        :
+                        }):
                         <View
                             style={styles.noResultView}>
                             <Text style={styles.noResultText}>No search items matched</Text>

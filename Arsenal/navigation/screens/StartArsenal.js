@@ -21,11 +21,9 @@ export default function StartTest({ navigation }) {
       <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/map_of_rathe_orig_v1.width-10000.jpg' }} />
     <ScrollView>
         <View style={{alignItems: 'center', justifyContent:'center', paddingVertical:'12%'}}>
-            <Pressable onPress={() => creditsCounter()}>
                 <Image
                 source={require('../../assets/fablogo.png')}
                 />
-            </Pressable>
         </View>
 
         <View style={styles.ButtonContainer}>

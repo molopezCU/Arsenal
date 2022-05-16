@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, ImageBackground, Dimensions, Image} from 'react-native'
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import Images from './Images';
 
 let deviceWidth = Dimensions.get('window').width
