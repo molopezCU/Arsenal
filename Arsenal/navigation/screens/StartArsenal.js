@@ -7,18 +7,23 @@ import {
   Pressable,
   Alert,
   Image,
+  Dimensions,
 } from "react-native";
 
 import * as StorageHandler from "../../StorageHandler";
 
+let deviceWidth = Dimensions.get('window').width
+let deviceHeight = Dimensions.get('window').height
+
 export default function StartTest({ navigation }) {
   return (
-
+    <View>
+      <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/map_of_rathe_orig_v1.width-10000.jpg' }} />
     <ScrollView>
         <View style={{alignItems: 'center', justifyContent:'center', paddingVertical:'12%'}}>
             <Pressable onPress={() => creditsCounter()}>
                 <Image
-                source={require('../../assets/favicon.png')}
+                source={require('../../assets/fablogo.png')}
                 />
             </Pressable>
         </View>
@@ -26,7 +31,7 @@ export default function StartTest({ navigation }) {
         <View style={styles.ButtonContainer}>
             <Pressable
             onPress={() => navigation.navigate("ArsenalConfig") }
-            style={({ pressed }) => [{ backgroundColor: pressed ? '#1c667d' : '#12414F' } , styles.Button]}
+            style={({ pressed }) => [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' } , styles.Button]}
             >
             <Text style={styles.ButtonText}>Create Account</Text>
 
@@ -36,13 +41,14 @@ export default function StartTest({ navigation }) {
         <View style={styles.ButtonContainer}>
             <Pressable
             onPress={() => navigation.navigate("MainAppPages") }
-            style={({ pressed }) => [{ backgroundColor: pressed ? '#1c667d' : '#12414F' } , styles.Button]}
+            style={({ pressed }) => [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' } , styles.Button]}
             >
             <Text style={styles.ButtonText}>Continue as Guest</Text>
 
             </Pressable>
         </View>
     </ScrollView>
+    </View>
   );
 
 }

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Switch, ScrollView, Pressable } from 'react-native';
+import { Text, View, StyleSheet, Switch, ScrollView, Pressable, Image, Dimensions } from 'react-native';
 import { Provider as PaperProvider, Button, TextInput, DefaultTheme } from 'react-native-paper';
 import Constants from 'expo-constants';
 import * as StorageHandler from "../../StorageHandler";
 import { useNavigation } from '@react-navigation/native';
 
-export default function SettingsPage(props) {
+let deviceWidth = Dimensions.get('window').width
+let deviceHeight = Dimensions.get('window').height
+
+export default function AccountsPage(props) {
   const navigation = useNavigation();
 
-  var pageTitle = "Settings";
+  var pageTitle = "Account";
 
   if (props.pageTitle != null) {
     pageTitle = props.pageTitle;
@@ -86,6 +89,8 @@ export default function SettingsPage(props) {
   
   return (
     <PaperProvider theme={theme}>
+      <View>
+      <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/map_of_rathe_orig_v1.width-10000.jpg' }} />
       <ScrollView>
       <View style={styles.container}>
 
@@ -105,7 +110,7 @@ export default function SettingsPage(props) {
         </View>
 
         {/* Creates user password input field */}
-        <View style={{ marginBottom: 20 }}>
+        <View style={{ marginBottom: 40 }}>
           <TextInput
             label="Password"
             mode="outlined"
@@ -118,7 +123,7 @@ export default function SettingsPage(props) {
 
         <Pressable
           onPress={() => startTest()}
-          style={({ pressed }) => [{ backgroundColor: pressed ? '#1c667d' : '#12414F' }, styles.Button]}
+          style={({ pressed }) => [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' }, styles.Button]}
           display={isOnArsenalConfig ? "flex" : "none"}
         >
           <Text style={styles.ButtonText}>Access Arsenal</Text>
@@ -128,7 +133,9 @@ export default function SettingsPage(props) {
 
       </View>
       </ScrollView>
+      </View>
     </PaperProvider>
+    
     
   );
 }
@@ -136,13 +143,12 @@ export default function SettingsPage(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
     padding: 15,
   },
 
   //used for page title 
   pageTitle: {
-    marginTop: 15,
+    marginTop: 5,
     marginBottom: 20,
     fontSize: 25,
     fontWeight: 'bold',

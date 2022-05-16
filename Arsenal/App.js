@@ -14,7 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import UserProfile from './navigation/screens/UserProfile';
 import CardGallery from './navigation/screens/CardGallery';
 import { clearAllStoredData } from './StorageHandler';
-import Settings from './navigation/screens/Settings';
+import Account from './navigation/screens/Account';
 
 import HomeScreen from './navigation/screens/HomeScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -37,11 +37,11 @@ function AppPages() {
           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
               screenOptions={({ navigation }) => ({
                 headerStyle: {
-                  backgroundColor: '#12414F',
+                  backgroundColor: '#2e2628',
                 },
                 headerTintColor: '#fff',
                 headerRight: () => (
-                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('account')}} />
                 ),
                 headerLeft: () => (
                   <View style={styles.ReturntoLoginContainer}>
@@ -63,11 +63,11 @@ function AppPages() {
           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
               screenOptions={({ navigation }) => ({
                 headerStyle: {
-                  backgroundColor: '#12414F',
+                  backgroundColor: '#2e2628',
                 },
                 headerTintColor: '#fff',
                 headerRight: () => (
-                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('account')}} />
                 ),
               })}
           >
@@ -85,11 +85,11 @@ function CardGalleryStack() {
           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
               screenOptions={({ navigation }) => ({
                 headerStyle: {
-                  backgroundColor: '#12414F',
+                  backgroundColor: '#2e2628',
                 },
                 headerTintColor: '#fff',
                 headerRight: () => (
-                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('account')}} />
                 ),
                 headerLeft: () => (
                   <View style={styles.ReturntoLoginContainer}>
@@ -118,7 +118,7 @@ function ShowImagesStack() {
           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
               screenOptions={({ navigation }) => ({
                 headerStyle: {
-                  backgroundColor: '#12414F',
+                  backgroundColor: '#2e2628',
                 },
                 headerTintColor: '#fff',
                 headerRight: () => (
@@ -151,11 +151,11 @@ function UserProfileStack() {
           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
               screenOptions={({ navigation }) => ({
                 headerStyle: {
-                  backgroundColor: '#12414F',
+                  backgroundColor: '#2e2628',
                 },
                 headerTintColor: '#fff',
                 headerRight: () => (
-                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('settings')}} />
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('account')}} />
                 ),
                 headerLeft: () => (
                   <View style={styles.ReturntoLoginContainer}>
@@ -242,7 +242,7 @@ function App() {
         <Stack.Group style={ { backgroundColor: '#6a51ae' }}
               screenOptions={({ navigation }) => ({
                 headerStyle: {
-                  backgroundColor: '#12414F',
+                  backgroundColor: '#2e2628',
                 },
                 headerTintColor: '#fff',
                 headerLeft: null,
@@ -255,14 +255,14 @@ function App() {
         <Stack.Group style={ { backgroundColor: '#6a51ae' }}
               screenOptions={({ navigation }) => ({
                 headerStyle: {
-                  backgroundColor: '#12414F',
+                  backgroundColor: '#2e2628',
                 },
                 headerTintColor: '#fff',
 
               })}
               
           >
-          <Stack.Screen name='settings' options={{ title: 'Settings' }} component={Settings}/>
+          <Stack.Screen name='account' options={{ title: 'Account' }} component={Account}/>
           <Stack.Screen name="ArsenalConfig" options={{ title: 'Account Setup' }} component={ArsenalConfig} />
         </Stack.Group>
           <Stack.Group screenOptions={{headerShown: false}}>
@@ -301,7 +301,7 @@ const theme = {
   roundness: 2,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#12414F',
+    primary: '#2e2628',
     accent: '#90C96A',
      
   },
