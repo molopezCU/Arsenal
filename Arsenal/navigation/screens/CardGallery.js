@@ -14,9 +14,9 @@ const CardGallery = (props) => {
     let deviceWidth = Dimensions.get('window').width
     let deviceHeight = Dimensions.get('window').height
 
-    const [loading, setLoading] = React.useState(false);
-
     return (
+      <View>
+      <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/upr_key_art_7Zz.width-10000.jpg' }} />
       <ScrollView>
       <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap',}}>
         {
@@ -38,6 +38,7 @@ const CardGallery = (props) => {
         }
       </View>
       </ScrollView>
+      </View>
     );
 }
 
