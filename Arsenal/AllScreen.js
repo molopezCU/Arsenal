@@ -9,6 +9,7 @@ import { clearAllStoredData } from './StorageHandler';
 import HomeScreen from './navigation/screens/HomeScreen';
 import CardGallery from './navigation/screens/CardGallery.js';
 import UserProfile from './navigation/screens/UserProfile';
+import ShowImages from './navigation/screens/ShowImages';
 
 
 
@@ -17,9 +18,10 @@ const _goBack = () => console.log('Went back');
 
 const HomeRoute = () => <HomeScreen/>
 
-const cardGallery = <CardGallery/>
+const ardGallery = <CardGallery/>
 
 const userProfile = <UserProfile/>
+
 
 const Lane_ChangeRoute = () => <LaneChangeScreenLeft />
 const MyComponent2 = () => {

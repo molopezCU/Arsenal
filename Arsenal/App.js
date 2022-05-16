@@ -20,6 +20,7 @@ import HomeScreen from './navigation/screens/HomeScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import ShowImages from './navigation/screens/ShowImages';
 
 
 const Stack = createStackNavigator();
@@ -105,6 +106,39 @@ function CardGalleryStack() {
               })}
           >
         <Stack.Screen name='CardGallery' options = {{ title: 'Card Gallery' }} component={CardGallery}/>
+        <Stack.Screen name="ShowImages" options={{ title: 'Show Images' }} component={ShowImages} />
+      </Stack.Group>
+    </Stack.Navigator>
+  );
+}
+
+function ShowImagesStack() {
+	return (
+    <Stack.Navigator>
+          <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+              screenOptions={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: '#12414F',
+                },
+                headerTintColor: '#fff',
+                headerRight: () => (
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('showImages')}} />
+                ),
+                headerLeft: () => (
+                  <View style={styles.ReturntoLoginContainer}>
+                    <Pressable
+                        onPress={() => navigation.navigate("showImages") }
+                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.ReturntoLogin]}
+                    >
+                      <Text style={styles.ReturntoLoginText}>Back</Text>
+            
+                    </Pressable>
+                  </View>
+                ),
+                gestureEnabled: false
+              })}
+          >
+        <Stack.Screen name='userprofile' options = {{ title: 'User Profile' }} component={UserProfile}/>
       </Stack.Group>
     </Stack.Navigator>
   );
