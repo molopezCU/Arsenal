@@ -15,30 +15,31 @@ const CardGallery = (props) => {
 
     return (
       <View>
-      <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/upr_key_art_7Zz.width-10000.jpg' }} />
-      <ScrollView>
-      <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap',}}>
-        {
-          Images.map((image, index) => (
-            <TouchableOpacity key={index} onPress={() => props.navigation.navigate("ShowImages", {url: image.url}) }>
-              <Image source={image.url}
-              style={
-                {
-                  height: deviceHeight / 3,
-                  width: deviceWidth / 2 - 4,
-                  borderRadius: 10, margin: 2,
-                  resizeMode: 'contain',
-                }
-              }/>
-              
-
-            </TouchableOpacity>
-          ))
-        }
-      </View>
-      </ScrollView>
+        <Image style={{ height: deviceHeight, width: deviceWidth, 
+        position: 'absolute', top:0, left:0 }} 
+        source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/upr_key_art_7Zz.width-10000.jpg' }} />
+          <ScrollView>
+            <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap',}}>
+              {
+                Images.map((image, index) => (
+                  <TouchableOpacity key={index} 
+                  onPress={() => props.navigation.navigate("ShowImages", {url: image.url}) }>
+                    <Image source={image.url}
+                      style={
+                        {
+                          height: deviceHeight / 3,
+                          width: deviceWidth / 2 - 4,
+                          borderRadius: 10, margin: 2,
+                          resizeMode: 'contain',
+                        }
+                      }/>
+                  </TouchableOpacity>
+                ))
+              }
+            </View>
+          </ScrollView>
       </View>
     );
-}
+  }
 
 export default CardGallery

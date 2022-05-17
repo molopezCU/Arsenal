@@ -19,34 +19,27 @@ export default function StartTest({ navigation }) {
   return (
     <View>
       <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/map_of_rathe_orig_v1.width-10000.jpg' }} />
-    <ScrollView>
-        <View style={{alignItems: 'center', justifyContent:'center', paddingVertical:'12%'}}>
-                <Image
-                source={require('../../assets/fablogo.png')}
-                />
-        </View>
-
-        <View style={styles.ButtonContainer}>
-            <Pressable
-            onPress={() => navigation.navigate("ArsenalConfig") }
-            style={({ pressed }) => [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' } , styles.Button]}
-            >
-            <Text style={styles.ButtonText}>Create Account</Text>
-
-            </Pressable>
-        </View>
-
-        <View style={styles.ButtonContainer}>
-            <Pressable
-            onPress={() => navigation.navigate("MainAppPages") }
-            style={({ pressed }) => [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' } , styles.Button]}
-            >
-            <Text style={styles.ButtonText}>Continue as Guest</Text>
-
-            </Pressable>
-        </View>
-    </ScrollView>
-    </View>
+        <ScrollView>
+          <View style={{alignItems: 'center', justifyContent:'center', paddingVertical:'12%'}}>
+            <Image source={require('../../assets/fablogo.png')}/>
+          </View>
+            <View style={styles.ButtonContainer}>
+              <Pressable
+                onPress={() => navigation.navigate("ArsenalConfig") }
+                style={({ pressed }) => [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' } , styles.Button]}>
+                  <Text style={styles.ButtonText}>Create Account</Text>
+              </Pressable>
+            </View>
+              <View style={styles.ButtonContainer}>
+                <Pressable
+                  onPress={() => navigation.navigate("MainAppPages") }
+                  style={({ pressed }) => 
+                  [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' } , styles.Button]}>
+                    <Text style={styles.ButtonText}>Continue as Guest</Text>
+                </Pressable>
+              </View>
+          </ScrollView>
+      </View>
   );
 
 }

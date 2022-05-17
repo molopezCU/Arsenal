@@ -26,7 +26,7 @@ export default function HomeScreen() {
   let deviceWidth = Dimensions.get('window').width
   let deviceHeight = Dimensions.get('window').height
 
-  const [dataSource, Images] = useState([
+  const [dataSource, Images] = useState([ //array of text that is used in HomeScreen.js
     'Katsu',
     'Dorinthea', 
     'Rhinar', 
@@ -35,14 +35,14 @@ export default function HomeScreen() {
 
    const [filtered, setFiltered] = useState(dataSource)
    const [searching, setSearching] = useState(false)
-   const onSearch = (text) => {
+   const onSearch = (text) => { //logic for when typing
      if (text) {
        setSearching(true)
        const temp = text
 
-       const tempList = dataSource.filter(item => {
+       const tempList = dataSource.filter(item => { //if the text matches an item on the text array, return it
          if (item.match(temp))
-           return item
+            return item
        })
        setFiltered(tempList)
      }
@@ -50,7 +50,6 @@ export default function HomeScreen() {
        setSearching(false)
        setFiltered(dataSource)
      }
-
    }
 
    return (
@@ -62,42 +61,36 @@ export default function HomeScreen() {
         style={styles.textInput}
         placeholder="Search"
         placeholderTextColor='white'
-        onChangeText={onSearch}
-
-      />
+        onChangeText={onSearch}/>
       <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
         <Text style={{ fontSize: 20, marginTop: 25, marginBottom: 20, color: 'white', fontWeight: "bold"}}> Cards</Text>
         <View style={{
           flexWrap: 'wrap', flexDirection: 'row',
-          justifyContent: 'center'
-
-        }}>
-          {
-            dataSource.map((item, index) => {
-              return (
-                <View style={{
-                  margin: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: 250, width: 175, backgroundColor: 'gray'
-                }}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                    {item}
-                  </Text>
-                </View>
-              )
-            })
-          }
+          justifyContent: 'center'}}>
+            {
+              dataSource.map((item, index) => {
+                return (
+                  <View style={{
+                    margin: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 250, width: 175, backgroundColor: 'gray'}}>
+                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                      {item}
+                    </Text>
+                  </View>
+                )
+              })
+            }
         </View>
-        
       </View>
       </ScrollView>
-      {
-        searching &&
-        <SearchDropDown
-          onPress={() => setSearching(false)}
-          dataSource={filtered} />
-      }
+        {
+          searching && //stops filtering as an option has been selected
+          <SearchDropDown
+            onPress={() => setSearching(false)}
+            dataSource={filtered} />
+        }
       </View>
     </View>
   )

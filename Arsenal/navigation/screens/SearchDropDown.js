@@ -12,31 +12,27 @@ export default function SearchDropDown(props) {
     const { dataSource } = props
     return (
         <TouchableOpacity
-            onPress={props.onPress}
-            style={styles.container}>
-
+          onPress={props.onPress}
+          style={styles.container}>
             <View style={styles.subContainer}>
-                {
-                    dataSource.length ?
-
-                        dataSource.map(item => {
-                            return (
-                                <View style={styles.itemView}>
-                                    <Text style={styles.itemText}>{item}</Text>
-                                </View>
-                            )
-                        }):
-                        <View
-                            style={styles.noResultView}>
-                            <Text style={styles.noResultText}>No search items matched</Text>
-                        </View>
+              {
+                dataSource.length ?
+                dataSource.map(item => {
+                  return (
+                    <View style={styles.itemView}>
+                        <Text style={styles.itemText}>{item}</Text>
+                    </View>
+                    )
+                }):
+                <View
+                    style={styles.noResultView}>
+                    <Text style={styles.noResultText}>No search items matched</Text>
+                </View>
                 }
-
             </View>
         </TouchableOpacity>
-
-    )
-}
+      )
+    }
 
 
 const styles = StyleSheet.create({

@@ -23,7 +23,6 @@ export default function AccountsPage(props) {
 
     const UsernameValue = await StorageHandler.getData("USER_NAME");
     const Password = await StorageHandler.getData("PASSWORD");
-
     if (UsernameValue != null) {
       setUsernameText(UsernameValue);
     }
@@ -44,16 +43,6 @@ export default function AccountsPage(props) {
   function savePassword(text) {
     StorageHandler.storeStringData("PASSWORD", text);
   }
-
-
-  const theme = {
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      primary: '#707070',
-      accent: '#FFFFFF',
-    },
-  };
 
   function startApp() {
     if (UsernameText != null && UsernameText != "" && PasswordText != null && PasswordText != "") {
@@ -86,57 +75,46 @@ export default function AccountsPage(props) {
     setToInitalSavedValues();
   });
 
-  
   return (
-    <PaperProvider theme={theme}>
-      <View>
-      <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/map_of_rathe_orig_v1.width-10000.jpg' }} />
+    <View>
+      <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} 
+      source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/map_of_rathe_orig_v1.width-10000.jpg' }} />
       <ScrollView>
-      <View style={styles.container}>
+        <View style={styles.container}>
+          <Text style={styles.pageTitle}>
+            {pageTitle}
+          </Text>
 
-        <Text style={styles.pageTitle}>
-          {pageTitle}
-        </Text>
-
-        {/* Creates user name input field */}
-        <View style={{ marginBottom: 20 }}>
-          <TextInput
+          {/* Creates user name input field */}
+          <View style={{ marginBottom: 20 }}>
+            <TextInput
             label="Username"
             mode="outlined"
             returnKeyType="done"
             value={UsernameText}
-            onChangeText={(text) => { setUsernameText(text); saveUsername(text); }}
-          />
-        </View>
+            onChangeText={(text) => { setUsernameText(text); saveUsername(text); }}/>
+          </View>
 
-        {/* Creates user password input field */}
-        <View style={{ marginBottom: 40 }}>
-          <TextInput
+            {/* Creates user password input field */}
+          <View style={{ marginBottom: 40 }}>
+            <TextInput
             label="Password"
             mode="outlined"
             returnKeyType="done"
             value={PasswordText}
             maxLength={8}
-            onChangeText={(text) => { setPasswordText(text); savePassword(text); }}
-          />
+            onChangeText={(text) => { setPasswordText(text); savePassword(text); }}/>
+          </View>
+
+          <Pressable
+            onPress={() => startApp()}
+            style={({ pressed }) => [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' }, styles.Button]}
+            display={isOnArsenalConfig ? "flex" : "none"}>
+              <Text style={styles.ButtonText}>Access Arsenal</Text>
+          </Pressable>
         </View>
-
-        <Pressable
-          onPress={() => startApp()}
-          style={({ pressed }) => [{ backgroundColor: pressed ? '#2e2628' : '#1c1718' }, styles.Button]}
-          display={isOnArsenalConfig ? "flex" : "none"}
-        >
-          <Text style={styles.ButtonText}>Access Arsenal</Text>
-
-        </Pressable>
-
-
-      </View>
       </ScrollView>
-      </View>
-    </PaperProvider>
-    
-    
+    </View>
   );
 }
 

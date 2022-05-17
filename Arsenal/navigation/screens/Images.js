@@ -1,4 +1,4 @@
-export default Images = [
+export default Images = [ //array of images to be used in CardGallery.js
     {url: require('../../assets/WTR_1.width-450.png')},
     {url: require('../../assets/WTR_2.width-450.png')},
     {url: require('../../assets/WTR_3.width-450.png')},

@@ -15,8 +15,7 @@ function BottomNav(){
       <BottomNavigation 
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
+      renderScene={renderScene}/>
   
     );
   }
