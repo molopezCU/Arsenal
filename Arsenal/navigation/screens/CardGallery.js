@@ -25,7 +25,7 @@ const CardGallery = (props) => {
               style={
                 {
                   height: deviceHeight / 3,
-                  width: deviceWidth / 3 - 6,
+                  width: deviceWidth / 2 - 4,
                   borderRadius: 10, margin: 2,
                   resizeMode: 'contain',
                 }
