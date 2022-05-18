@@ -17,6 +17,7 @@ import CardGallery from './CardGallery';
 import SearchDropDown from "./SearchDropDown";
 import Images from './Images';
 import ShowImages from './ShowImages';
+import LoginScreen from "./LoginScreen";
 
 export default function HomeScreen() {
 
@@ -26,7 +27,7 @@ export default function HomeScreen() {
   let deviceWidth = Dimensions.get('window').width
   let deviceHeight = Dimensions.get('window').height
 
-  const [dataSource, Images] = useState([ //array of text that is used in HomeScreen.js
+  const [dataSource, Images] = useState([ //array of text that is used in HomeScreen.jsitem
     'Katsu',
     'Dorinthea', 
     'Rhinar', 
@@ -55,7 +56,8 @@ export default function HomeScreen() {
    return (
     <View style={styles.container}>
       <View>
-      <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/upr_key_art_7Zz.width-10000.jpg' }} />
+      <Image style={{ height: deviceHeight, width: deviceWidth, position: 'absolute', top:0, left:0 }} 
+      source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/upr_key_art_7Zz.width-10000.jpg' }} />
       <ScrollView>
         <TextInput
         style={styles.textInput}

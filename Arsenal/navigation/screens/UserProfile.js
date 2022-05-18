@@ -1,19 +1,36 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Linking, ScrollView, TextInput, Pressable, KeyboardAvoidingView, RefreshControl, Share, Alert, Image } from 'react-native';
-import * as StorageHandler from "../../StorageHandler";
+import { useNavigation } from '@react-navigation/core'
+import {StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { auth } from '../../firebase'
 
+const UserProfile = () => {
+  const navigation = useNavigation()
 
+  const handleSignOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        navigation.replace("Login")
+      })
+      .catch(error => alert(error.message))
+  }
 
-
-export default function UserProfile() {
-  return(
-    <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-        <Text>Hello, world!</Text>
-      </View>
+  return (
+    <View style={styles.container}>
+      <Text>Email: {auth.currentUser?.email}</Text>
+      <Text>This is a profile that displays whatever user's 
+        logged in email is
+      </Text>
+    </View>
   )
 }
+
+export default UserProfile
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+})

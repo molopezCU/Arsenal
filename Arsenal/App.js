@@ -9,17 +9,20 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import StartArsenal from './navigation/screens/StartArsenal';
 import ArsenalConfig from './navigation/screens/ArsenalConfig';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-//import UserProfile from './navigation/screens/UserProfile';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import UserProfile from './navigation/screens/UserProfile';
 import CardGallery from './navigation/screens/CardGallery';
 import { clearAllStoredData } from './StorageHandler';
 import Account from './navigation/screens/Account';
 
+import LoginScreen from './navigation/screens/LoginScreen';
 import HomeScreen from './navigation/screens/HomeScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import ShowImages from './navigation/screens/ShowImages';
+import { auth } from './firebase';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const Stack = createStackNavigator();
@@ -28,10 +31,21 @@ const MaterialTopTab = createMaterialTopTabNavigator();
 
 global.test = true;
 
-//bottom left
+//top bar brain and bottom bar navigators
 function AppPages() {
-	return (
 
+  const navigation = useNavigation()
+
+  const handleSignOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        navigation.replace("Login")
+      })
+      .catch(error => alert(error.message))
+  }
+
+	return (
     <Stack.Navigator initialRouteName="HomeScreen">
       <Stack.Group style={ { backgroundColor: '#6a51ae' }}
           screenOptions={({ navigation }) => ({
@@ -41,13 +55,13 @@ function AppPages() {
             headerTintColor: '#fff',
             headerLeft: () => (
               <View style={styles.ReturntoLoginContainer}>
-                <Pressable
-                    onPress={() => navigation.navigate("StartArsenal") }
+                <TouchableOpacity
+                    onPress={handleSignOut}
                     style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.ReturntoLogin]}
                 >
                   <Text style={styles.ReturntoStartPage}>Log out</Text>
         
-                </Pressable>
+                </TouchableOpacity>
               </View>
             ),
             gestureEnabled: false
@@ -64,7 +78,7 @@ function AppPages() {
             //   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('account')}} />
             // ),
           })}>
-            {/* <Stack.Screen name="userprofile" options={{ title: 'User Profile' }} component={UserProfile} /> */}
+            <Stack.Screen name="userprofile" options={{ title: 'User Profile' }} component={UserProfile} />
           <Stack.Screen name="cardgallery" options={{ title: 'Card Gallery' }} component={CardGallery} /> 
       </Stack.Group>
     </Stack.Navigator>
@@ -126,44 +140,44 @@ function ShowImagesStack() {
             ),
             gestureEnabled: false
           })}>
-        {/* <Stack.Screen name='userprofile' options = {{ title: 'User Profile' }} component={UserProfile}/> */}
+        <Stack.Screen name='userprofile' options = {{ title: 'User Profile' }} component={UserProfile}/>
       </Stack.Group>
     </Stack.Navigator>
   );
 }
 
-// //bottom right
-// function UserProfileStack() {
-// 	return (
-//     <Stack.Navigator>
-//           <Stack.Group style={ { backgroundColor: '#6a51ae' }}
-//               screenOptions={({ navigation }) => ({
-//                 headerStyle: {
-//                   backgroundColor: '#2e2628',
-//                 },
-//                 headerTintColor: '#fff',
-//                 headerRight: () => (
-//                   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('account')}} />
-//                 ),
-//                 headerLeft: () => (
-//                   <View style={styles.ReturntoLoginContainer}>
-//                     <Pressable
-//                         onPress={() => navigation.navigate("StartArsenal") }
-//                         style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.ReturntoLogin]}
-//                     >
-//                       <Text style={styles.ReturntoStartPage}>Back</Text>
+//bottom right
+function UserProfileStack() {
+	return (
+    <Stack.Navigator>
+          <Stack.Group style={ { backgroundColor: '#6a51ae' }}
+              screenOptions={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: '#2e2628',
+                },
+                headerTintColor: '#fff',
+                headerRight: () => (
+                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('account')}} />
+                ),
+                headerLeft: () => (
+                  <View style={styles.ReturntoLoginContainer}>
+                    {/* <Pressable
+                        onPress={() => navigation.navigate("StartArsenal") }
+                        style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.ReturntoLogin]}
+                    >
+                      <Text style={styles.ReturntoStartPage}>Back</Text>
             
-//                     </Pressable>
-//                   </View>
-//                 ),
-//                 gestureEnabled: false
-//               })}
-//           >
-//         <Stack.Screen name='userprofile' options = {{ title: 'User Profile' }} component={UserProfile}/>
-//       </Stack.Group>
-//     </Stack.Navigator>
-//   );
-// }
+                    </Pressable> */}
+                  </View>
+                ),
+                gestureEnabled: false
+              })}
+          >
+        <Stack.Screen name='userprofile' options = {{ title: 'User Profile' }} component={UserProfile}/>
+      </Stack.Group>
+    </Stack.Navigator>
+  );
+}
 
 //bottom bars
 function MyTabs() {
@@ -195,7 +209,7 @@ function MyTabs() {
           ),
         }}/>
 
-			{/* <Tab.Screen 
+			<Tab.Screen 
         name="Profile" 
         component={UserProfileStack} 
         options={{ 
@@ -207,17 +221,17 @@ function MyTabs() {
         listeners={({ navigation }) => ({
           blur: () => navigation.setParams({ screen: undefined }),
         })} 
-      /> */}
+      />
 		</Tab.Navigator>
 	);
 }
 
-
+//THE main app function
 function App() {
   return (
 		<NavigationContainer>
       <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
-      <Stack.Navigator initialRouteName="StartArsenal" >
+      <Stack.Navigator initialRouteName="LoginScreen" >
         <Stack.Group style={ { backgroundColor: '#6a51ae' }}
           screenOptions={({ navigation }) => ({
             headerStyle: {
@@ -227,7 +241,8 @@ function App() {
             headerLeft: null,
             gestureEnabled: false
           })}>
-        <Stack.Screen name="StartArsenal" options={{ title: 'Welcome to Arsenal' }} component={StartArsenal} />
+        <Stack.Screen name="Login" options={{ title: 'Welcome to Arsenal' }} component={LoginScreen} />
+        {/* <Stack.Screen name="HomeScreen" options={{ title: 'Search' }} component={HomeScreen} /> */}
       </Stack.Group>
       <Stack.Group style={ { backgroundColor: '#6a51ae' }}
         screenOptions={({ navigation }) => ({
@@ -262,6 +277,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   ReturntoStartPage: {
+    backgroundColor: 'white',
     fontSize: 15,
     fontWeight: 'bold',
     color: 'black',
