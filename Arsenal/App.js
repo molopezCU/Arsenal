@@ -156,9 +156,9 @@ function UserProfileStack() {
                   backgroundColor: '#2e2628',
                 },
                 headerTintColor: '#fff',
-                headerRight: () => (
-                  <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('account')}} />
-                ),
+                // headerRight: () => (
+                //   <IconButton icon = "cog" color={"white"} onPress={() => {navigation.navigate('account')}} />
+                // ),
                 headerLeft: () => (
                   <View style={styles.ReturntoLoginContainer}>
                     {/* <Pressable

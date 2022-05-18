@@ -1,10 +1,12 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Dimensions } from 'react-native'
 import { auth } from '../../firebase'
 import HomeScreen from './HomeScreen'
 
 const LoginScreen = () => {
+  let deviceWidth = Dimensions.get('window').width
+  let deviceHeight = Dimensions.get('window').height
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -47,7 +49,12 @@ return (
       style={styles.container}
       behavior="padding"
     >
-    
+      <Image style={{ height: deviceHeight, width: deviceWidth, 
+        position: 'absolute', top:0, left:0 }} 
+        source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/map_of_rathe_orig_v1.width-10000.jpg' }} />
+        <View style={{alignItems: 'center', justifyContent:'center', paddingVertical:'12%'}}>
+          <Image source={require('../../assets/fablogo.png')}/>
+        </View>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
