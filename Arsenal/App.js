@@ -54,14 +54,12 @@ function AppPages() {
             },
             headerTintColor: '#fff',
             headerLeft: () => (
-              <View style={styles.ReturntoLoginContainer}>
-                <TouchableOpacity
+              <View style={styles.signoutButtonContainer}>
+                <Pressable
                     onPress={handleSignOut}
-                    style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.ReturntoLogin]}
-                >
-                  <Text style={styles.ReturntoStartPage}>Log out</Text>
-        
-                </TouchableOpacity>
+                    style={({ pressed }) => [{ backgroundColor: pressed ? '#d1d1d1' : 'white' } , styles.signoutButton]}>
+                    <Text style={styles.signoutButtonText}>Log out</Text>
+                </Pressable>
               </View>
             ),
             gestureEnabled: false
@@ -275,6 +273,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 10,
     elevation: 3,
+  },
+  signoutButtonContainer: {
+    marginLeft: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  signoutButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: "100%",
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    elevation: 3,
+  },
+  signoutButtonText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'black',
   },
   ReturntoStartPage: {
     backgroundColor: 'white',

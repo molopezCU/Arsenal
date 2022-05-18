@@ -27,7 +27,7 @@ export default function HomeScreen() {
   let deviceWidth = Dimensions.get('window').width
   let deviceHeight = Dimensions.get('window').height
 
-  const [dataSource, Images] = useState([ //array of text that is used in HomeScreen.jsitem
+  const [dataSource, Images] = useState([ //array of text that is used in HomeScreen.js item
     'Katsu',
     'Dorinthea', 
     'Rhinar', 

@@ -47,44 +47,38 @@ const LoginScreen = () => {
 return (
     <View
       style={styles.container}
-      behavior="padding"
-    >
+      behavior="padding">
       <Image style={{ height: deviceHeight, width: deviceWidth, 
         position: 'absolute', top:0, left:0 }} 
         source={{ uri: 'https://storage.googleapis.com/fabmaster/media/images/map_of_rathe_orig_v1.width-10000.jpg' }} />
         <View style={{alignItems: 'center', justifyContent:'center', paddingVertical:'12%'}}>
           <Image source={require('../../assets/fablogo.png')}/>
         </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChangeText={text => setEmail(text)}
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={text => setPassword(text)}
-          style={styles.input}
-          secureTextEntry
-        />
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={handleLogin}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleSignUp}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.buttonOutlineText}>Register</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Email"
+            value={email}
+            onChangeText={text => setEmail(text)}
+            style={styles.input}/>
+          <TextInput
+            placeholder="Password"
+            value={password}
+            onChangeText={text => setPassword(text)}
+            style={styles.input}
+            secureTextEntry/>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={handleLogin}
+            style={styles.button}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleSignUp}
+            style={[styles.button, styles.buttonOutline]}>
+            <Text style={styles.buttonOutlineText}>Register</Text>
+          </TouchableOpacity>
+        </View>
     </View>
   )
 }
